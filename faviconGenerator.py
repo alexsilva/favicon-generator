@@ -2,9 +2,11 @@
 
 import argparse
 import os
-
+import logging
 from PIL import Image
 from pilkit.processors import ProcessorPipeline, ResizeToFit
+
+logger = logging.getLogger(__name__)
 
 
 # Function that downloads images
@@ -43,11 +45,11 @@ def favicon_generator(original_image, directory):
 			result, (int((size[2][0] - result.size[0]) / 2), int((size[2][1] - result.size[1]) / 2))
 		)
 		background.save(directory + "/" + size[0] + ".png")
-		print("{}.png generated".format(size[0]))
+		logger.info("{}.png generated".format(size[0]))
 
 
 def main(original_image, directory_name):
-	print("\nFaviconGenerator by Hecsall\n")
+	logger.info("\nFaviconGenerator by Hecsall\n")
 
 	# Manage the directory name
 	if directory_name == "threadDirectory":
@@ -61,7 +63,7 @@ def main(original_image, directory_name):
 
 	# Start the favicon generator
 	favicon_generator(original_image, directory)
-	print("\nAll the Favicons generated in \"{}\" folder\n".format(directory))
+	logger.info("All the Favicons generated in \"{}\" folder\n".format(directory))
 
 
 if __name__ == "__main__":
