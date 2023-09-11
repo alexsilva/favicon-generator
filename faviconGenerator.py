@@ -8,7 +8,7 @@ from pilkit.processors import ProcessorPipeline, ResizeToFit
 
 
 # Function that downloads images
-def faviconGenerator(originalImage, directory):
+def favicon_generator(original_image, directory):
 	index = 0
 
 	sizes = [
@@ -32,10 +32,10 @@ def faviconGenerator(originalImage, directory):
 		["largetile", [558, 558], [558, 558]],
 	]
 
-	outfile = os.path.splitext(originalImage)[0] + ".png"
+	outfile = os.path.splitext(original_image)[0] + ".png"
 
 	for size in sizes:
-		im = Image.open(originalImage)
+		im = Image.open(original_image)
 		processor = ProcessorPipeline([ResizeToFit(size[1][0], size[1][1])])
 		result = processor.process(im)
 		background = Image.new('RGBA', size[2], (255, 255, 255, 0))
@@ -46,21 +46,21 @@ def faviconGenerator(originalImage, directory):
 		print("{}.png generated".format(size[0]))
 
 
-def main(originalImage, directoryName):
+def main(original_image, directory_name):
 	print("\nFaviconGenerator by Hecsall\n")
 
 	# Manage the directory name
-	if directoryName == "threadDirectory":
+	if directory_name == "threadDirectory":
 		directory = "faviconGenerator"
 	else:
-		directory = directoryName[1:] if directoryName[0] == '/' else directoryName
+		directory = directory_name[1:] if directory_name[0] == '/' else directory_name
 
 	# Creates the directory
 	if not os.path.exists(directory):
 		os.makedirs(directory)
 
 	# Start the favicon generator
-	faviconGenerator(originalImage, directory)
+	favicon_generator(original_image, directory)
 	print("\nAll the Favicons generated in \"{}\" folder\n".format(directory))
 
 
