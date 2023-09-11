@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-
-import argparse
 import os
 import logging
 from PIL import Image
@@ -47,32 +45,3 @@ def favicon_generator(original_image, directory):
 		background.save(directory + "/" + size[0] + ".png")
 		logger.info("{}.png generated".format(size[0]))
 
-
-def main(original_image, directory_name):
-	logger.info("\nFaviconGenerator by Hecsall\n")
-
-	# Manage the directory name
-	if directory_name == "threadDirectory":
-		directory = "faviconGenerator"
-	else:
-		directory = directory_name[1:] if directory_name[0] == '/' else directory_name
-
-	# Creates the directory
-	if not os.path.exists(directory):
-		os.makedirs(directory)
-
-	# Start the favicon generator
-	favicon_generator(original_image, directory)
-	logger.info("All the Favicons generated in \"{}\" folder\n".format(directory))
-
-
-if __name__ == "__main__":
-	parser = argparse.ArgumentParser(description='Generate web favicons from an image.')
-
-	parser.add_argument('originalimage', nargs='+', help='Original Image of the favicon')
-	parser.add_argument('-o', '--output', default='threadDirectory',
-	                    help='Directory name where the script saves the images. Default directory name will be \"faviconGenerator\".')
-
-	args = parser.parse_args()
-
-	main(*args.originalimage, args.output)
