@@ -41,7 +41,7 @@ def favicon_generator(original_image, directory, sizes=None) -> list:
 		background.paste(
 			result, (int((box_size[0] - result.size[0]) / 2), int((box_size[1] - result.size[1]) / 2))
 		)
-		background.save(background.save(os.path.join(directory, filename + ".png")))
+		background.save(os.path.join(directory, filename + ".png"))
 		logger.info("{}.png generated".format(filename))
 		results.append(result)
 	return results
