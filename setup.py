@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
 	name='favicon-generator',
-	version='1.0',
+	version='1.1',
 	py_modules=['faviconGenerator'],
 	url='https://github.com/Hecsall/favicon-generator',
 	scripts=['scripts/favicon_generator.py'],
